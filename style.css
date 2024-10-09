@@ -1,0 +1,48 @@
+header{
+  font-family: "Gloria Hallelujah", cursive;
+  font-size: 50px;
+  position:absolute;
+  left: 37%;
+  /* border: 1px solid black; */
+  font-weight: 400;
+  font-style: normal;
+}
+
+#gameCanvas{
+    /* background-color: black; */
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -55%);
+    border: 1px solid black;
+    /* border-radius: 30px; */
+}
+
+.btn{
+    padding: 13px;
+    box-sizing: border-box;
+    width:200px;
+    position: absolute;
+    top:800px;
+    left:45%;
+    background-color: lightyellow;
+    border-radius: 15px;
+    font-family: "Gloria Hallelujah", cursive;
+    font-size: 20px;
+    transition: 300ms;
+}
+
+.btn:hover{
+    background-color: lightgreen;
+}
+
+#aud{
+    position:absolute;
+    top:13%;
+    left: 78%;
+    border-radius: 5px;
+}
+
+.audio_image{
+    width:20px;
+}
