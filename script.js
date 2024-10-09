@@ -1,5 +1,10 @@
+//SOME ADJUSTMENTS
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
+startScreen();
+const replayer = document.getElementById('replay');
+replayer.style.display = 'none';
+const scoreLabel = document.getElementById('score');
 
 // Start Screen
 function startScreen() {
@@ -11,11 +16,13 @@ function startScreen() {
 }
 
 // GAMEPLAY
-startScreen();
+
 
 // 0. Gameplay button 
 const gamebtn = document.getElementById('play');
 gamebtn.addEventListener('click', function() {
+    gamebtn.style.display = 'none';
+    replayer.style.display = 'block';
     startGame();
 });
 
@@ -139,7 +146,12 @@ function drawTileMap() {
 
 function checkWallCollision() {
     const head = snake[0];
-    return head.x < 0 || head.x >= cols || head.y < 0 || head.y >= rows;
+    //return head.x < 0 || head.x >= cols || head.y < 0 || head.y >= rows;
+    if(head.x<0){snake[0].x = cols-1;}
+    else if(head.x>=cols){snake[0].x = 0;}
+
+    if(head.y<0){snake[0].y = rows-1;}
+    else if(head.y>=rows){snake[0].y = 0;}
 }
 
 function checkSelfCollision() {
@@ -167,12 +179,15 @@ function gameLoop(currentTime) {
         lastUpdateTime = currentTime;
     }
     
-    if(checkWallCollision() || checkSelfCollision()) {
-        //alert(`${score}`);
-        console.log('Game Over!');
-        location.reload();
+    if(checkSelfCollision()) {
+        canvas.style.display = 'none';
+        scoreLabel.style.top = '50%';
+        scoreLabel.style.left = '50%';
+        scoreLabel.style.transform = 'translate(-50%, -50%)';
+        scoreLabel.style.animation = 'flicker 0.15s infinite';
     }
 
+    checkWallCollision();
     checkFoodCollision();
     drawSnake();
     drawFood();
@@ -205,6 +220,11 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
+//REPLAY BUTTON IS CLICKED 
+replayer.addEventListener('click',()=>{
+    location.reload();
+});
+
 
 //AUDIO PART 
 const voiceAudio = document.getElementById('voice');
@@ -226,7 +246,6 @@ audio.addEventListener('click', function(){
 
 //DISPLAYING SCORE
 function updateScore(){
-    const scoreLabel = document.getElementById('score');
     scoreLabel.textContent = `Score: ${score}`;
 }
 
