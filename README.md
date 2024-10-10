@@ -1,4 +1,4 @@
-Highest Score is 21 
+Highest Score is 22 
 if you have beaten it add it here 
 Leaderboard
 1. Naveen - 22
